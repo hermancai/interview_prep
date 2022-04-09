@@ -6,9 +6,8 @@ You are also given the true length of the string.
 Input:  "Mr John Smith    ", 13
 Output: "Mr%20John%20Smith"
 
-Solutions: 
+Solution: 
 
-##### 1
 Turn string into list of chars for space efficiency.
 Loop through string backwards, starting at true length index.
 Check and replace chars starting at last index.

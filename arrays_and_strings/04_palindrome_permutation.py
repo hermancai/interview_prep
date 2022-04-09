@@ -5,11 +5,10 @@ Assume only alphabet and spaces, not case sensitive.
 Input: "Tact Coa"
 Output: True ("taco cat", "atco cta", etc)
 
-Solutions:
+Note:
 Property of a palindrome: it can have at most one odd count of a character
 
-##### 1:
-Given: string only contains alphabet chars and spaces
+Solution:
 
 Create list of size 26 to track char frequency.
 Loop through list.
