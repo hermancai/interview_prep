@@ -4,17 +4,21 @@ class Node:
     self.next = None
 
 class SinglyLinkedList:
-  def __init__(self, li: list):
+  def __init__(self, li: list) -> None:
     if not list: return
 
     self.head = self.tail = Node(li[0])
 
     for i in range(1, len(li)):
-      temp = Node(li[i])
-      self.tail.next = temp
-      self.tail = temp
+      self.append(li[i])
 
-  def printList(self):
+  def append(self, val) -> Node:
+    temp = Node(val)
+    self.tail.next = temp
+    self.tail = temp
+    return temp
+
+  def printList(self) -> None:
     current = self.head
     while current:
       print(current.val, end=" ")
