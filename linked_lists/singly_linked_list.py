@@ -4,8 +4,10 @@ class Node:
     self.next = None
 
 class SinglyLinkedList:
-  def __init__(self, li: list) -> None:
-    if not list: return
+  def __init__(self, li: list = None) -> None:
+    if not li:
+      self.head = self.tail = None
+      return
 
     self.head = self.tail = Node(li[0])
 
@@ -13,7 +15,12 @@ class SinglyLinkedList:
       self.append(li[i])
 
   def append(self, val) -> Node:
-    temp = Node(val)
+    temp = val if type(val) is Node else Node(val)
+
+    if not self.head:
+      self.head = self.tail = temp
+      return
+    
     self.tail.next = temp
     self.tail = temp
     return temp
