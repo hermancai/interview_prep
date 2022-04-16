@@ -25,6 +25,19 @@ class SinglyLinkedList:
     self.tail = temp
     return temp
 
+  def pop(self) -> Node:
+    if self.tail is self.head:
+      temp = self.tail
+      self.tail = self.head = None
+      return temp
+    
+    curr = self.head
+    while curr.next.next:
+      curr = curr.next
+    
+    curr.next = None
+    return curr
+
   def printList(self) -> None:
     current = self.head
     while current:
