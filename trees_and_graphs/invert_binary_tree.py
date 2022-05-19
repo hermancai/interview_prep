@@ -25,10 +25,10 @@ import print_binary_tree as p
 def invert(root: Node) -> None:
   if not root: return
 
-  print(root.val)
   root.left, root.right = root.right, root.left
   invert(root.left)
   invert(root.right)
+  
 
 # Solution 2
 # NOTE: This is not breadth first traversal, which would use a queue.
