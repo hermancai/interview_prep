@@ -1,0 +1,22 @@
+--What is object oriented programming?
+  A type of programming based on objects instead of just functions/precedures.
+  Objects are grouped into classes, which have defined attributes and methods.
+
+--Why is OOP useful?
+  Classes are good for readability, maintainability, and easier to understand.
+
+--What are some major OOP languages?
+  Javascript, Java, C++, Python, PHP
+
+--What are the main features of OOP?
+  Inheritance, encapsulation, polymorphism, data abstraction
+
+--What is an object?
+  The basic unit of OOP. Different objects have different attributes and methods.
+
+--What is a class?
+  A template containing attributes and methods. When an object is created, 
+  the object will take the characteristics of the class.
+
+--Can you call a class method without creating an instance?
+  Yes if the method is static or if the class is inherited by a subclass.
