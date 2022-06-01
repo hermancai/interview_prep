@@ -13,10 +13,76 @@
 
 --What is an object?
   The basic unit of OOP. Different objects have different attributes and methods.
+  An object is an instance of a class. It is a physical entity while classes are logical.
 
 --What is a class?
   A template containing attributes and methods. When an object is created, 
   the object will take the characteristics of the class.
+  A class takes no memory. Objects instantiated using the class take memory.
 
 --Can you call a class method without creating an instance?
   Yes if the method is static or if the class is inherited by a subclass.
+
+--What is inheritance?
+  Classes can inherit properties from other classes. 
+  This helps reduce duplicate code.
+  Multiple inheritance: when a class inherits from multiple classes.
+  Multilevel inheritance: when a class inherits from a class which itself inherits from another.
+  Hierarchical inheritance: when a superclass has multiple subclasses
+  Hybrid inheritance: combo of multiple and hierarchical 
+  --What are the limitations of inheritance? 
+    Super and sub class become coupled, increasing complexity for maintenance.
+
+--What is polymorphism?
+  Objects can behave differently under different circumstances.
+  Static (compiler time polymorphism): compiler decides how code will behave.
+    Ex: method overloading (types and number of arguments)
+  Dynamic (run time polymorphism): behavior decided during run time
+    Ex: method overriding (subclass can redefine an existing superclass method)
+
+--What is encapsulation?
+  Binding data/code that works together into a single unit. Ex: classes
+  Allows hiding data between classes.
+  --What are access specifiers/modifiers?
+    Keywords (public, private, protected) that determine access of data/methods in a class
+
+--What is data abstraction?
+  Showing important details while hiding actual implementation.
+  --What is an abstract class?
+    Class that contains abstract methods. These methods are declared but not defined.
+    Instances of abstract classes cannot be created. Subclasses will need to define abstract methods. 
+    i.e. abstract classes create functionality that subclasses can choose to implement or override.
+  --What is an interface?
+    Concept that allows declaring methods without implementing them. 
+    Any class that implements an interface defines the interface methods.
+  --Compare abstract class and interface.
+    Both are special types of classes. 
+    When interface is implemented, subclass must define and implement all interface methods.
+    Abstract classes can contain both abstract and non-abstract methods.
+    Subclasses are not required to define abstract class methods.
+
+--What are virtual functions?
+  Functions in a superclass to be overridden by a subclass to achieve dynamic polymorphism.
+  --What are pure virtual functions?
+    Abstract superclass functions with no definition. Must be defined by subclass. 
+
+--What is a constructor?
+  A special method with the same name as the class. Used to initialize objects of that class.
+  --What is a destructor?
+    A method that is called when an object is destroyed. 
+    Recovers heap space, closes files, connections, etc.
+  --What is a copy constructor?
+    Creates objects by copying an object of the same class. 
+
+--What is garbage collection?
+  Automatic memory management. Frees up space occupied by objects no longer in existence.
+
+--What is an exception?
+  Notification that interrupts a program. Transfers the error to the exception handler to solve it.
+  --What is exception handling?
+    Allows errors to be thrown and caught, and implements a way to resolve them.
+
+--What is a try/catch block?
+  Used to handle exceptions. Try block may lead to errors, which the catch block will catch.
+  --What is a finally block?
+    Executes when the try block exits. Runs even in case of error.
