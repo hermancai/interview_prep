@@ -1,0 +1,95 @@
+--What is a closure?
+  Combo of a function and the lexical environment in which that function was declared.
+  Ex: A function creates a local variable and a nested function, which uses that local
+    variable. It then returns the nested function. When that nested function is called 
+    later, it retains access to the local variable, which should normally be 
+    inaccessible after the initial function returned. The nested function is a closure, 
+    and that local variable is within the function's lexical environment.
+
+--Is Javascript block-scoped or function-scoped?
+  It can be both due to hoisting of variables declared with var.
+  Use let/const for block scoping.
+
+--Is Javascript a compiled or interpreted language?
+  Javascript was originally interpreted with browsers in mind.
+  It can now also be compiled (e.g. JIT-compiler) depending on the environment. 
+
+--Is Javascript dynamic or static? Is it strongly or weakly typed?
+  Javascript is dynamic and weakly typed.
+  Dynamic: Types are checked at run time.
+  Static: Types are checked at compile time.
+  Strongly typed: Pointers cannot be reassigned to values of different type.
+  Weakly typed: Pointers can be reassigned to values of different type.
+  Javascript allows type coercion because the language is weakly typed.
+  Ex: let a = "str";  a = 9;  // this is allowed in Javascript
+
+--What is hoisting?
+  Function hoisting: A function can be called before it is declared.
+  Variable hoisting: A variable can be used before it is declared and/or initialized.
+    Declaration: var num;
+    Initialization: num = 6;
+    NOTE: The declaration will be hoisted but not initialization, so num is undefined.
+    If the variable is not even declared, there will be a ReferenceError instead. 
+    Let and const declarations are also hoisted, but there is no default (i.e. undefined) 
+      initialization like var.
+    NOTE: The order of code execution matters, not the order of written source code. 
+
+--What is type coercion?
+  When data/object is forced into a different type.
+  Ex: 1 == true, 0 == false
+  Ex: "hello" + 99 == "hello99"
+  Ex: "hello" == true
+  Ex: a = [0, 1, 2, 3]; a[0] == false; // This is probably unwanted behavior.
+
+--What is the difference between == and ===?
+  Type coercion does not occur for === (strict equality).
+  Ex: 1 == true   // returns true
+      1 === true  // returns false
+
+--What is the difference between call, apply, and bind?
+  Call and apply modify the context (i.e. this) of a function then run the function immediately.
+  Bind does the same thing except the function can be called later. 
+  Call takes arguments one by one, while apply takes a list of arguments.
+  Example:
+    const john = { food: "pizza" };
+    const getFood = function(action1, action2) {
+      console.log("Eat" + this.food + " then " + action1 + " and " + action2);
+    }
+    getFood.call(john, "run", "sleep");
+    getFood.apply(john, ["run", "sleep"]);
+    const functionForLater = getFood.bind(john);
+    functionForLater("run", "sleep");
+
+--What is object serialization and deserialization?
+  Serialization: Converting an object into a suitable format for network transfer or storage.
+    Ex: JSON.stringify(obj)
+  Deserialization: Converting a lower-level format into a readable object.
+    Ex: JSON.parse(objString)
+
+--What is a mixin?
+  In Javascript, there can only be one prototype for an object and a class can only extend from one class.
+  A mixin is a class with methods can other classes can use without inheriting from it.
+  Example:
+    let mixin = {
+      sayHi() {
+        alert("Hello");
+      }
+    };
+
+    class User = {
+      constructor(name) {
+        this.name = name;
+      }
+    }
+
+    Object.assign(User.prototype, mixin);
+    new User("Joe").sayHi(); // Hello
+
+--What is tree shaking?
+  Removal of dead code. Uses the import and export statements in ES2015 to check if 
+    code modules are used between Javascript files.
+  Module bundlers (e.g. webpack) automatically tree shake when bundling multiple files into one.
+
+--What is reflection?
+  Concept that an object can look at its own properties and methods.
+  Ex: Object.hasOwnProperty("key");

@@ -1,0 +1,11 @@
+--What is the difference between encrypting and hashing?
+  Encrypted data can later be decrypted.
+  Hashing cannot be undone. The hashing process, given an input, should always give the same output, 
+    and outputs should never be the same for two different inputs. 
+
+--What is progressive enhancement and graceful degradation?
+  Progressive enhancement: Starting development with a baseline of old browsers. 
+    Apply advanced features when a browser can support it.
+  Graceful degradation: Start with the newest browsers.
+    For old browsers that cannot support newer features, maintain basic functionality. 
+
