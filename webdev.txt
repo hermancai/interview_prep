@@ -1,3 +1,23 @@
+--What is the DOM?
+  Document Object Model. Representation of the elements that make up a web page.
+  Elements are organized as a tree of nodes.
+  
+--Compare textContent, innerText, innerHTML.
+  textContent: the text in an HTML element and its descendants
+    Returns every element in the node, including hidden, scripts, style.
+    Removes child nodes when altered.
+  innerText: similar to textContent, except:
+    Aware of CSS so reading innerText triggers a reflow (avoid this).
+    Supports browsers older than IE8.
+  innerHTML: HTML of an element.
+    Don't use this unless inserting safe HTML into an element.
+    Use textContent to get text so it does not need HTML parsing.
+  createTextNode: this is for making a new element, not altering an existing element.
+
+--Compare visibility:hidden and display:none.
+  Hidden: The element is rendered and space is allocated for it on the page, but it is not seen.
+  None: The element is not on the page. It can be accessed using the DOM.
+
 --What is the difference between encrypting and hashing?
   Encrypted data can later be decrypted.
   Hashing cannot be undone. The hashing process, given an input, should always give the same output, 
@@ -9,3 +29,29 @@
   Graceful degradation: Start with the newest browsers.
     For old browsers that cannot support newer features, maintain basic functionality. 
 
+--What is fault tolerance?
+  A system's ability to continue operating despite failure of one or more components.
+  Ex: If an HTML file is missing a closing tag or css uses non-existant properties, 
+    the browser will still attempt to render the page without crashing.
+  https://dev.to/jfbrennan/fault-tolerance-on-the-web-3lb0
+
+--What is hydration?
+  When client-side Javascript converts a static HTML page into a dynamic page by attaching event 
+    handlers to the HTML elements. This allows a fast first contentful paint (when useful data 
+    is first shown to the user). The page will appear fully loaded but is not actually until 
+    the Javascript has completed.
+
+--What is repaint and reflow?
+  Reflow: Recalculating element positions to re-render the page.
+    Due to changing window size, element sizes, font size, etc.
+    An expensive process and should be avoided.
+  Repaint: Occurs when an element's appearance is changed. (e.g. background color, visibility)
+
+--In test driven development, what is spy, stub, and mock?
+  Spy: Used to get info about function calls (e.g. how many times a function was called)
+  Stub: Function to replace another function. For getting sample data or specific response.
+  Mock: Similar to stub but for entire objects.
+
+--What are memory leaks?
+  Memory that is not required anymore but the system is not releasing that memory.
+  Main cause of leaks in Javascript is unwanted references (e.g. globals, DOM elements).

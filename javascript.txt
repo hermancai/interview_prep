@@ -93,3 +93,157 @@
 --What is reflection?
   Concept that an object can look at its own properties and methods.
   Ex: Object.hasOwnProperty("key");
+
+--What is ES6?
+  ECMAScript is a blueprint/set of standards for creating a scripting language.
+  Javascript is an implementation of ECMAScript.
+  ES6 is also called ES2015 or officially ECMAScript 2015.
+  It introduces arrow functions, destructuring, etc. 
+  https://babeljs.io/docs/en/learn/ 
+
+--What is CommonJS?
+  It is a module formatting system for organizing Javascript code. 
+  It is the default in Node.js (e.g. require('module')).
+  Newer versions of Node now support ES modules (i.e. import Obj from 'module').
+
+--What is window, screen, and document?
+  window is the execution context and global object for that context's Javascript.
+    window properties include document, screen, location, history, navigator, etc
+    Each browser tab and iframe has its own window.
+  screen (i.e. window.screen or screen) is a object containing info about physical screen dimensions.
+  document (i.e. window.document or document) is the main object to be rendered (i.e. the DOM).
+
+--What is an iframe?
+  It is an HTML element used to embed a document within the current document.
+  Useful for videos, ads, etc.
+
+--Compare host objects and native objects.
+  Native: objects in ECMAScript that are fully defined by the ECMA specifications rather 
+    than the host environment. Native objects can be built-in or constructed. 
+    Ex: Object, Date, Math, eval, indexOf, replace, etc
+  Host: objects provided by the host environment (e.g. browser, server)
+    Ex: window, document, location, history, XMLHttpRequest, setTimeout, getElementsByTagName
+
+--Compare event bubbling and event capturing.
+  Both are ways for events to propagate in a DOM.
+  Given a nested group of elements div -> ul -> li and li gets a click event:
+  Bubbling: Events will execute starting with li and move outwards to ul then div.
+  Capturing: Events will execute starting with div and move inwards to ul then li.
+
+--What is the temporal dead zone?
+  Variables declared with let/const are block-scoped. They are hoisted, but they cannot 
+    be accessed until they are initialized. They will throw a ReferenceError while 
+    variables declared with var will return undefined.
+
+--What is a Symbol?
+  A built-in primitive object that is guaranteed to be unique. Useful for adding property keys 
+    to an object to prevent collision. 
+
+--What is a WeakMap?
+  A built-in map where keys must be objects. Values can be any type. Strong references are not 
+    created to the keys i.e. a key object can be garbage collected. After collection, the key's 
+    value is also open for collection as long as it is not strongly referred elsewhere.
+
+--What is a callback?
+  A function passed as an argument to another function, so that it can be called later.
+  Used frequently for asynchronous code. 
+  Context changes in callbacks, so call/apply is needed if 'this' will be referenced.
+
+--What is a thunk?
+  A function, returned by another function, that will be used to perform work later.
+  In Redux, thunks are a pattern of writing functions that will interact with 
+    the store's dispatch() and getState().
+
+--What is the event loop?
+  Javascript's runtime model is based on the event loop, which executes code, collects/processes 
+    events, and executes queued sub-tasks.
+  The event loop is usually implemented as a queue that waits for messages. Each message is processed 
+    completely before the next message. In the browser, messages are added every time an event 
+    fires and there is a listener attached.
+  The event loop does not block. Exceptions include alert and synchronous XHRs. Avoid using these.
+
+--What is a race condition?
+  When a system attempts two operations on one subject at the same time, the outcome may be uncertain.
+    It depends on the system (e.g. multi-threading).
+  Javascript is single-threaded. When two async functions are run at the same time, they enter the heap.
+    The heap in this context is a mostly unstructured region of memory.
+    While in the heap, it is uncertain which function will be given to the waiting queue. 
+    However, when the functions enter the queue, they will be executed one at a time. 
+    It can be argued that Javascript does not have race conditions.
+
+--What is the output of console.log(+ "hello"); ?
+  NaN. + is the unary plus operator. It converts the following operand into a number, which fails in this case.
+  console.log(+ "4");   // 4
+  console.log(+ true);  // 1
+  console.log(+ false); // 0
+
+--What is the output of 3 instanceof Number; ?
+  false. 3 is a primitive number while Number is a primitive wrapper object used to represent numbers.
+  console.log(typeof 3)  // number
+  console.log(typeof Number)  // function
+
+--Compare array literals and condensed arrays.
+  Literal: let li = [1, 2, 3]
+    let x = [1, 2, 3]  // [1, 2, 3]
+    let x = [1, , 3]  // [1, undefined, 3]
+  Condensed: let li = new Array(1, 2, 3)
+    If there is only one argument and it is an int, array will be an empty list of given length.
+    let x = new Array(3)  // [<3 empty slots>]
+    let x = new Array(1, 2, 3)  // [1, 2, 3]
+    let x = new Array(1, , 3)  // SyntaxError
+    let x = new Array("hi")  // ["hi"]
+
+--What is currying?
+  A function that takes one argument and returns a function that expects the next argument.
+    Ex: f(a, b, c) -> curry -> f(a)(b)(c)
+  Divides original function into multiple smaller functions that handle one responsibility.
+  Ex:
+    const curry = (a) => {
+      return (b) => {
+        return (c) => {
+          return a + b + c;
+        }
+      }
+    }
+    const addOne = curry(1);  // addOne is a function that adds 1
+    console.log(addOne(4)(5))  // 10
+
+    const addThree = curry(1)(2);  // addThree is a function that adds 3
+    console.log(addThree(50))  // 53
+
+--Compare null and undefined.
+  null: a primitive value representing the absence of an object value.
+    console.log(typeof null);  // object
+  undefined: a primitive value and a variable in global scope.
+    Default value when a var has been declared but not assigned a value.
+    console.log(typeof undefined);  // undefined
+  undefined === null;  // false
+  undefined == null;  // true
+  null === null;  // true
+  undefined === undefined;  // true
+
+--Compare var, const, let.
+  var: Function scoped. 
+    Can be redeclared and updated.
+  let: Block scoped (i.e. anything within {}). 
+    Can be updated but not redeclared, unless it is in a different scope.
+  const: Block scoped.
+    Cannot be updated or redeclared.
+    const objects cannot be updated, but their properties can. 
+
+--What is a prototype?
+  Prototypes are how Javascript objects inherit features. 
+  Every object has a built-in property __proto__, which is that object's prototype.
+  The prototype itself is an object, meaning it has a __proto__ property as well. 
+    console.log(Object.prototype);
+    Contains these functions: constructor, hasOwnProperty, isPrototypeOf, propertyIsEnumerable, 
+      toLocaleString, toString, valueOf.
+    Also contains __proto__ with a value of null.
+  A prototype chain can be created, which will end with Object.prototype's own prototype of null.
+    Ex: const myDate = new Date();
+      Chain: myDate -> Date.prototype -> Object.prototype
+  When calling an object's function, the function will be searched for in the object's properties.
+    If not found, prototypes will be searched up the chain. If not found, return undefined.
+  Shadowing properties: overriding a prototype property by defining it with the same name in the current object.
+  Setting prototypes: Object.create(customPrototype); or using the prototype/constructor property
+    https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes#setting_a_prototype
