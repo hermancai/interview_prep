@@ -247,3 +247,16 @@
   Shadowing properties: overriding a prototype property by defining it with the same name in the current object.
   Setting prototypes: Object.create(customPrototype); or using the prototype/constructor property
     https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object_prototypes#setting_a_prototype
+
+--What is a Promise?
+  Object that represents the eventual success/failure of an async operation and its result.
+  A Promise has 3 states: pending, fulfilled, rejected.
+  The Promise.then() and .catch() methods return Promises, so it can be chained.
+  then() takes two arguments: callback functions to handle resolve and reject.
+  catch() takes a function to handle rejections.
+  Promise.all(iterable) waits for all given promises to be resolves or any to be rejected.
+
+--What is Node and Express?
+  Node: A cross-platform back-end Javascript runtime environment that executes Javascript 
+    code outside a web browser.
+  Express: A back-end web framework for Node.
