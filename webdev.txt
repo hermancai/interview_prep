@@ -55,3 +55,9 @@
 --What are memory leaks?
   Memory that is not required anymore but the system is not releasing that memory.
   Main cause of leaks in Javascript is unwanted references (e.g. globals, DOM elements).
+
+--What are ways to deal with malicious actors?
+  Rating limiting, captchas, nonce ("number used once", i.e. single use tokens), 
+  banning bad ASNs (Autonomous System Number, used to control routing within a network 
+  and communicate with other ISPs).
+
