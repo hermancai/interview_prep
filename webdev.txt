@@ -61,3 +61,29 @@
   banning bad ASNs (Autonomous System Number, used to control routing within a network 
   and communicate with other ISPs).
 
+--What is DRY and SOLID?
+  DRY: Don't Repeat Yourself. Principle of reducing repeated software patterns.
+    "Every piece of knowledge must have a single, unambiguous, authoritative representation within a system."
+    Changing an element of a system does not require a change in other logically unrelated elements.
+    Logically related elements change in a predictable and uniform way.
+  SOLID: 5 design principles for OOP
+    Single responsiblity: Every class should only have one responsibility.
+    Open-closed: An element's behavior can be extended, without modifying source code (i.e. inheritance).
+      Open: Module can be extended by adding properties to it.
+      Closed: Module can be used by other modules since it is well-defined and stable.
+    Liskov substitution: A class and subclass should be interchangable without breaking the program.
+      "Functions that use pointers to base classes must be able to use derived classes without knowing it."
+    Interface segregation: Many specific interfaces is better than one general purpose interface.
+      Code should not be forced to depend on methods that the code does not use.
+    Dependency inversion: Both high and low level modules should depend on abstractions, instead of the 
+      high level depending directly on the low level. 
+      The abstractions (interfaces) expose the behavior needed by the high level. 
+      The abstracts are owned by the high level and the low levels are created by implementation of the abstracts.
+      This increases reusability of high level modules, and they can use other implementations of low level modules.
+
+--What is MVC?
+  Model-View-Controller. A software design pattern for separation of concerns.
+  Model: manages data and business logic (i.e. data structure)
+  View: manages layout and design (i.e. UI)
+  Controller: manages routing commands to the model and view (i.e. control logic)
+  User makes change -> View sends input to Controller -> Controller manipulates Model -> Model sends updated state to View
