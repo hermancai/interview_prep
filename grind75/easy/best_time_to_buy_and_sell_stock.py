@@ -20,8 +20,17 @@ Loop through list, updating both values. Return max profit.
 Time: O(n)
 Space: O(1)
 
+##### 2
+Use two pointers to loop through list. Keep track of max.
+While right pointer is less than list length:
+  If left value is less than right value, can profit:
+    Update max
+  Else: Set left pointer equal to right pointer
+  Increment right pointer
+
 """
 
+# Solution 1
 def getMaxProfit(prices: list) -> int:
   maxProfit, minPrice = 0, float("inf")
 
@@ -32,5 +41,23 @@ def getMaxProfit(prices: list) -> int:
   return maxProfit
 
 
+# Solution 2
+def maxProfit(prices: list) -> int:
+  l, r = 0, 1
+  maxP = 0
+
+  while r < len(prices):
+    # If a profit can be made
+    if prices[l] < prices[r]:
+      maxP = max(maxP, prices[r] - prices[l])
+    else:
+      # If profit was made, r is always higher value than current l.
+      # Now r is lower than l (i.e. no profit) so set current r to l as new min value
+      l = r
+    r += 1
+
+  return maxP
+
+
 if __name__ == "__main__":
-  print(getMaxProfit([7, 1, 5, 3, 6, 4]))
+  print(maxProfit([7, 1, 5, 3, 6, 4]))

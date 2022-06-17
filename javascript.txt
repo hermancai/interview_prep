@@ -260,3 +260,15 @@
   Node: A cross-platform back-end Javascript runtime environment that executes Javascript 
     code outside a web browser.
   Express: A back-end web framework for Node.
+
+--How does JIT (just in time) compilation work for Javascript?
+  The browser runs the interpreted language. The JIT compiler translates each line to machine code and 
+  executes the code normally. If lines are run repeatedly (e.g. loop), the lines are flagged as warm/hot.
+  Warm code is sent to be compiled and indexed. If that code gets repeated later on, the compiled version 
+  will be used instead. Optimizations include skipping type checks. If type assumption turns out wrong 
+  since Javascript is dynamically typed, the compiler will throw away the compiled version and 
+  revert to the base code (deoptimization). This can result in even slower performance. 
+
+--What is Babel?
+  A transpiler that converts newer Javascript into backwards compatible Javascript for older browsers.
+  Ex: ES2020 Javascript is not currently supported by all browsers, so Babel can translate it.
