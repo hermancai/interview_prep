@@ -1,0 +1,31 @@
+--What is JSX?
+  Javascript and XML. Syntatic sugar for React. When compiled, turns into React.createElement().
+
+--Why is 'className' used instead of 'class' for styling elements?
+  'Class' is a reserved keyword in Javascript.
+
+--Describe dataflow in React.
+  Flow is unidirectional. All components have a parent-child relationship.
+  Data (props) move down from parent to child.
+
+--How to delay an API call until a component has mounted?
+  In traditional class components, componentDidMount().
+  In modern functional components, useEffect(). Use empty array as dependency to run once.
+
+--Should you use ternary or && operator to render elements?
+  Use ternary. Falsy values can cause bugs with the && operator. 
+  Ex: array[0] holds a value so something should render, but if the value is 0, then no render.
+
+--What is a hook?
+  Introduced in React v16.8 for use with functional components.
+  Hooks are functions that "hook" into React state and lifecycle features. 
+  Only call hooks at the top level (i.e. not inside loops, conditions, nested functions.)
+  Only call hooks from inside React functional components and custom hooks.
+  Custom Hooks: normal Javascript functions that handle stateful logic and can be 
+    reused in multiple components. Custom hooks can contain built-in hooks (e.g. useState, 
+    useEffect). Components that share a custom hook have independent states. Reusing stateful logic 
+    was traditionally handled with higher-order components and render props.
+  Conventionally, hook names start with "use", including custom hooks.
+
+--What are render props and higher-order components?
+  
