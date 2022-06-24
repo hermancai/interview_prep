@@ -8,6 +8,7 @@
     Removes child nodes when altered.
   innerText: similar to textContent, except:
     Aware of CSS so reading innerText triggers a reflow (avoid this).
+      Ex: if text is styled with display: none, that text will not be returned.
     Supports browsers older than IE8.
   innerHTML: HTML of an element.
     Don't use this unless inserting safe HTML into an element.
@@ -17,6 +18,11 @@
 --Compare visibility:hidden and display:none.
   Hidden: The element is rendered and space is allocated for it on the page, but it is not seen.
   None: The element is not on the page. It can be accessed using the DOM.
+
+--What are data attributes in HTML?
+  Any attribute of an HTML element that begins with "data-".
+  Can access all data attributes in an element using the dataset property.
+  Ex: <div data-columns="3" />  console.log(divElement.dataset.columns); // 3
 
 --What is the difference between encrypting and hashing?
   Encrypted data can later be decrypted.
@@ -87,3 +93,31 @@
   View: manages layout and design (i.e. UI)
   Controller: manages routing commands to the model and view (i.e. control logic)
   User makes change -> View sends input to Controller -> Controller manipulates Model -> Model sends updated state to View
+
+--What is serverless computing?
+  When the server is managed by a third-party cloud provider, instead of on-site. This saves time and money 
+  that would otherwise be needed to take care of the server. Serverless is more scalable - as the server handles 
+  more users, the infrastructure can change to match demand.
+  Disadvantages: Serverless loses control and visibility, since a third-party manages the server.
+
+--Compare server side rendering (SSR) and static generation (SSG).
+  SSR: The server pre-renders a page to HTML on every request. This means the server will take longer to 
+    respond to a request, but data will always be up-to-date.
+  SSG: HTML files are created before requests, such as at build time. Performance is better, 
+    but data can become stale.
+  There are ways to mix methods and maximize performance.
+    Incremental SSG: Add/update static pre-rendered pages after build time.
+    Client-side fetching: Statically generate parts of a page that don't need data, then fetch data client-side.
+
+--What is a content delivery network (CDN)?
+  A geographically distributed group of servers that work together to serve content quickly.
+  A majority of web traffic is served through CDNs, including traffic from major sites (e.g. Netflix, Amazon).
+  CDNs can cache content on the network edge (close to user devices).
+  Benefits: better load times, reduced bandwidth costs, increased content availability, better security.
+  
+--What is CORS?
+  Cross-Origin Resource Sharing. A server can decide which origins (domain, scheme, port) other than its own 
+    that a browser permits loading resources from. Permissions are contained in HTTP headers. When loading from 
+    a cross-origin source, the browser will also make a "preflight" request to the that server to check 
+    if the request will be allowed.
+  

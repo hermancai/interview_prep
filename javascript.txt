@@ -272,3 +272,21 @@
 --What is Babel?
   A transpiler that converts newer Javascript into backwards compatible Javascript for older browsers.
   Ex: ES2020 Javascript is not currently supported by all browsers, so Babel can translate it.
+
+--Basic DOM manipulation functions
+  const body = document.body
+  body.append("Hello", "Bye");  // does same thing as appendChild() except more versatile
+  body.appendChild();  // only accepts nodes
+
+  const div = document.createElement("div");
+  div.setAttribute("id", "divID"));  // can also directly access i.e. div.id = "divID";
+  div.getAttribute("id");
+  div.removeAttribute("id"); 
+  console.log(div.dataset);  // displays all data attributes in element 
+  div.classList.add("newClass");
+  div.classList.remove("newClass");
+  div.classList.toggle("newClass");  // adds or removes class depending on if it's already in
+  div.classList.toggle("otherClass", true);  // adds or removes based on boolean
+  div.style.backgroundColor = "red";
+  body.append(div);
+  div.remove();  // also see removeChild()
