@@ -16,6 +16,15 @@
   Use ternary. Falsy values can cause bugs with the && operator. 
   Ex: array[0] holds a value so something should render, but if the value is 0, then no render.
 
+--What is the virtual DOM?
+  A concept where a representation of a UI is kept in memory and synced with the real DOM.
+  It is more of a pattern than a specific technology.
+  Usually associated with React elements because they are the objects representing the UI.
+
+--What is a state?
+  A variable that when changed will trigger a re-render of the associated component.
+  State is private and fully controlled by the component.
+
 --What is a hook?
   Introduced in React v16.8 for use with functional components.
   Hooks are functions that "hook" into React state and lifecycle features. 
@@ -27,5 +36,101 @@
     was traditionally handled with higher-order components and render props.
   Conventionally, hook names start with "use", including custom hooks.
 
+--useState()
+  Creates a new state and function to update that state.
+  Takes in an initial state value as the argument.
+  const [count, setCount] = useState(0);
+
+--useEffect()
+  Calls the given function (effect) after a component first renders and after every re-render.
+  By calling useEffect() inside a component, it has access to state. 
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times.`
+
+    return () => {
+      // clean up e.g. unsubscribe
+    }
+  }, [count]);
+
+  On every re-render, a different version of the effect is created, replacing the previous one. 
+    Versions are different because they access changing state.
+  To include a clean-up action, return a function in the given callback. The cleanup is also 
+    run every time that effect is run. This prevents stale data. 
+  Add a dependency array as an argument to only use the effect when values in the array change.
+    Use an empty array to run the effect and clean up only once.
+
+--useContext()
+  Accepts a context object (returned by React.createContext()).
+  Returns the current context value for that context, determined by the closest Provider above 
+    the calling component. When that Provider updates, useContext() triggers a re-render 
+    using the latest context value.
+  useContext() only reads the context and subscribes to its changes. The Provider gives the value.
+
+--useRef()
+  Returns a ref object whose .current property is set to the given initial value.
+  The object remains for the lifetime of the component and the .current value is mutable.
+  Changing the current value does not trigger a re-render.
+  When assigning this object to an element/component, the .current property will be set 
+    to that node. This allows a child node to be referenced directly in the parent component.
+
+  const inputElement = useRef(null);
+  const onClickHandler = () => inputElement.current.focus();
+  return (
+    <>
+      <input ref={inputElement} type="text" />
+      <button onClick={onClickHandler}>Focus on input</button>
+    </>
+  );
+
+--useMemo()
+  Returns a memoized value.
+  Takes a callback and a dependency array. The value is calculated by running the callback. 
+  The value will only be recalculated when the dependencies change.
+    If no dependency array is given, the value will be recalculated on every render.
+  This hook is used to enhance performance because the calculation is expensive. 
+    Code should still be functional without using this hook.
+  const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+--useCallback()
+  Returns a memoized callback.
+  Pass an inlined callback and dependency array. 
+  The memoized callback only changes if dependencies change.
+  Suppose a function is passed to a child component. If the function changes per render, 
+    the child will also re-render. If re-rendering the child is unnecessary, use useCallback().
+  useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).
+
 --What are render props and higher-order components?
+  Render prop: Sharing code by passing a function as a prop to multiple components.
+    The function returns a React element. The component that accepts the function calls 
+      it instead of implementing its own render logic. 
+    Suppose there is a component C1 that has a nested component E1. Somewhere else in the code, 
+      C1 is also used but with a different nested component E2. Instead of hardcoding the nested 
+      components, resulting in duplicate code via C1, C1 can take in a function that returns 
+      a React component (in this case: E1 or E2). 
+  Higher Order Component (HOC): A function that takes a component and returns a new component.
+    Suppose there are two different components that perform different actions, but have similarities 
+      in handling state logic. An HOC can implement this shared logic instead by wrapping a new 
+      component, which contains that logic, around the simplified base components, which are 
+      passed as an argument to the HOC.
+
+--What is props.children?
+  children is a special React component property that contains child elements within that component.
   
+  const Wrapper = (props) => {
+    return (
+      <div>
+        <p>This text is available regardless of props.children</p>
+        {props.children}
+      </div>
+    )
+  }
+
+  return (
+    <Wrapper>
+      <p>This is Wrapper's props.children.</p>
+      <p>Also this.</p>
+    </Wrapper>
+  )
+
+  props.children can also be a callback function, called with props.children() in the wrapper.

@@ -290,3 +290,27 @@
   div.style.backgroundColor = "red";
   body.append(div);
   div.remove();  // also see removeChild()
+
+--Basic DOM traversal functions
+  document.getElementById("elementId");
+  Array.from(document.getElementsByClassName("elementId"));
+  document.querySelector("#elementId");  // gets first matching element
+  document.querySelectorAll(".elementClass");  // returns list
+    Also works using an element instead of "document."
+  Array.from(document.getElementById("elementId").children);  // list of element's children
+  document.getElementById("elementId").parentElement; 
+  document.getElementById("elementId").closest(".parentElement"); // like querySelector but upwards
+  document.getElementById("elementId").nextElementSibling;
+    Also previousElementSibling
+
+--Basic array methods
+  list.filter((val) => val > 10);  // Returns new array with items that match the conditions
+  list.map((val) => val * 10);  // Returns new array after performing operations per item
+  list.find((val) => val === 10);  // Returns first item that matches
+  list.forEach((val) => console.log(val));  // Performs operation on every item
+  list.some((val) => val > 10);  // Returns true if any item matches
+  list.every((val) => val > 10);  // Returns true if every item matches
+  list.reduce((currentTotal, val) => {
+    return val + currentTotal;
+  }, 0);  // currentTotal is updated per item, with a given initial value of 0
+  list.includes(10);  // Returns true if list has item
