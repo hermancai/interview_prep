@@ -15,7 +15,8 @@ Solutions:
 
 ##### 1
 Get index of lowest value using binary search.
-Perform binary search in updated range of indices, accounting for rotation.
+Perform binary search to look for target.
+  Index range depends on if target is in left or right side of list.
 
 Time: O(log n)
 Space: O(1)
@@ -34,14 +35,21 @@ def searchRotated(nums: list[int], target: int) -> int:
         start = mid + 1
     return -1
 
+  # Get index of lowest value in list using binary search
   start, end = 0, len(nums) - 1
   while start < end:
     mid = (start + end) // 2
+    # Given that the list is sorted and may be rotated.
+    # If middle is greater than end, lowest value is on the right side.
+    # At some point on the right side, we reach the highest value, 
+    #   and the number after would the the lowest.
+    #   Every value on the left side is less than mid but greater than end.
     if nums[mid] > nums[end]:
       start = mid + 1
     else:
       end = mid
 
+  # Normal binary search to get target
   if target >= nums[start] and target <= nums[-1]:
     return binarySearch(nums, target, start, len(nums) - 1)
   return binarySearch(nums, target, 0, start - 1)

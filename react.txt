@@ -40,6 +40,9 @@
   Creates a new state and function to update that state.
   Takes in an initial state value as the argument.
   const [count, setCount] = useState(0);
+  setCount() is asynchronous. If you want to directly modify state in setCount(), pass a callback.
+    Ex: setCount(currCount => currCount + 1); // Wrong: setCount(count + 1);
+    To access and use updated state, use useEffect(). 
 
 --useEffect()
   Calls the given function (effect) after a component first renders and after every re-render.
