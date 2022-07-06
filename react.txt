@@ -39,6 +39,9 @@
 --useState()
   Creates a new state and function to update that state.
   Takes in an initial state value as the argument.
+    Pass something as the initial value instead of leaving it empty. If a null value is 
+      passed as a prop along with an onChange, React considers that component uncontrolled.
+      
   const [count, setCount] = useState(0);
   setCount() is asynchronous. If you want to directly modify state in setCount(), pass a callback.
     Ex: setCount(currCount => currCount + 1); // Wrong: setCount(count + 1);

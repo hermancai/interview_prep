@@ -15,6 +15,18 @@
     Use textContent to get text so it does not need HTML parsing.
   createTextNode: this is for making a new element, not altering an existing element.
 
+--Describe the css position values.
+  static: Default. Not affected by left, right, top, bottom properties. Follows normal flow of page.
+  relative: Same as static except it changes with left, right, top, bottom relative to normal position.
+  absolute: Positioned relative to closest positioned (i.e. not static) ancestor. If there is not a 
+    non-static parent, the document body is used as parent and the element moves with page scroll.
+    Absolute elements are removed from normal flow and can overlap elements. The flow behaves as 
+      if the element is not there.
+  fixed: Positioned relative to viewport i.e. the element stays in the same place even with scroll. 
+    Fixed elements are removed from normal flow, similar to absolute. 
+  sticky: Toggles between relative and fixed, based on scroll position. 
+    At least one of left, right, top, or bottom must be specified for sticky to work.
+
 --Compare visibility:hidden and display:none.
   Hidden: The element is rendered and space is allocated for it on the page, but it is not seen.
   None: The element is not on the page. It can be accessed using the DOM.
