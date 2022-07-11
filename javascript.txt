@@ -23,6 +23,39 @@
   Javascript allows type coercion because the language is weakly typed.
   Ex: let a = "str";  a = 9;  // this is allowed in Javascript
 
+--Describe the Javascript thread and call stack.
+  Javascript is synchronous and single-threaded, with asynchronous capabilities. 
+  There is a single sequential flow of control.
+  A thread has a call stack and memory.
+  A call stack keeps track of functions and manages the execution context. 
+  The bottom of the call stack is the global execution context. Functions are stacked on top.
+  The call stack works the same way as the data structure. Called functions get 
+    called and pushed onto the stack, then get popped when finished. 
+
+--Describe the execution context.
+  An environment that is created when running Javascript to handle the transformation 
+    and execution of code. Contains currently running code and everything that aids its execution. 
+  There is global execution context and function execution context (for every function called).
+  When context is created, there is a variable environment in memory, which holds all 
+    variables and functions as key value pairs. There is also the execution, which 
+    goes through the code line by line to execute it. 
+  When creating context, there are two phases: memory creation and execution. 
+    Basically, the code is parsed twice for different purposes.
+    Memory creation: Create global object (browser = window, nodejs = global). 
+      Create 'this' object and binds to global object. 
+      Sets up memory heap and stores variables and function references. 
+        Entire functions are stored, but variables are set as undefined. 
+        This is how hoisting works under the hood. 
+
+--Describe asynchronous Javascript, the task queue, and the event loop.
+  Asynchronous functions can register a callback, which is placed into the task queue. 
+    The queue works the same way as the data structure. 
+  The event loop will continuously run to pop callbacks from the queue and push 
+    them onto the call stack for execution. Execution occurs on each tick of the event loop. 
+  The microtask queue handles Promise callbacks and has higher priority than 
+    the normal task queue. Callbacks here do not have to wait for the event loop 
+    to finish its current iteration/tick. 
+
 --What is hoisting?
   Function hoisting: A function can be called before it is declared.
   Variable hoisting: A variable can be used before it is declared and/or initialized.
